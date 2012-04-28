@@ -5,9 +5,8 @@
 package autocompletar.componente;
 
 import autocompletar.logica.AutoCompletar;
+import autocompletar.logica.DesplegableJPopUPMenu;
 import autocompletar.logica.ModeloAutoCompletar;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -15,12 +14,12 @@ import java.util.List;
  */
 public class AutoCompletarTextField extends javax.swing.JPanel {
 
-    private ModeloAutoCompletar modelo;
     /**
      * Creates new form AutoCompletarTextField
      */
     public AutoCompletarTextField() {
         initComponents();
+        ((AutoCompletar)txtBuscar).setDesplegable(new DesplegableJPopUPMenu(txtBuscar));
     }
 
     /**
@@ -81,5 +80,9 @@ public class AutoCompletarTextField extends javax.swing.JPanel {
     
     public void añadirElementoLista(Object elemento){
         ((AutoCompletar)txtBuscar).getModelo().añadirElemento(elemento);
+    }
+    
+    public Object getItemSeleccionado(){
+        return ((AutoCompletar)txtBuscar).getSelectedItem();
     }
 }

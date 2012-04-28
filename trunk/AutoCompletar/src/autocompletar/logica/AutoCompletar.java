@@ -17,13 +17,10 @@ public class AutoCompletar extends JTextField {
 
     private String texto = "";
     private ModeloAutoCompletar modelo;
-    private DesplegableJPopUPMenu desplegable;
+    private DesplegableJPopUPMenu desplegable = new DesplegableJPopUPMenu(this);
     private Object SelectedItem;
 
     public AutoCompletar() {
-
-        desplegable = new DesplegableJPopUPMenu(this);
-
         /**
          * evento de tecla para empezar el autocompletado
          */
@@ -45,7 +42,7 @@ public class AutoCompletar extends JTextField {
                     texto = texto + e.getKeyChar();
                     
                     for(int i=0;i<modelo.getListaElementos().size();i++){
-                        String elemento = modelo.getElemento(i);
+                        String elemento = modelo.getElementoString(i);
                         boolean cumplePatron = Pattern.matches(texto.toUpperCase() + ".*", elemento.toUpperCase());
                         if (cumplePatron) {
                             setText(texto + autoCompletar(texto.toLowerCase(), elemento.toLowerCase()));
@@ -75,10 +72,6 @@ public class AutoCompletar extends JTextField {
         this.modelo = modelo;
     }
 
-    public void setDespelgable(DesplegableJPopUPMenu despl) {
-        desplegable = despl;
-    }
-
     /**
      * este metodo lo utiliza el item cuando se selecciona.
      *
@@ -103,7 +96,7 @@ public class AutoCompletar extends JTextField {
     
     public void setSelectedItem(int index) {
         if(modelo.getListaElementos()!=null){
-            SelectedItem = modelo.getElemento(index);
+            SelectedItem = modelo.getListaElementos().get(index);
         }
     }
     

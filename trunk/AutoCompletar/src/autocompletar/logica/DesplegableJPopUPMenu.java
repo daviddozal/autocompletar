@@ -5,8 +5,6 @@
 package autocompletar.logica;
 
 import java.awt.Component;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.swing.JMenuItem;
@@ -21,24 +19,24 @@ import javax.swing.event.ChangeListener;
  */
 public class DesplegableJPopUPMenu extends JPopupMenu {
 
-    private List<String> listaElementos;
+    //private List<String> listaElementos;
     private Component componenteLlamador;
     private int posX, posY;
     private boolean cajaDeTextoEsVacía = false;
 
     public DesplegableJPopUPMenu(Component nuevoComponenteLLamador) {
-        posX = 0;
-        posY = 19;
         componenteLlamador = nuevoComponenteLLamador;
+        posX = 0;
+        posY = (int) componenteLlamador.getPreferredSize().getHeight();
     }
 
-    public List<String> getElementos() {
-        return listaElementos;
-    }
-
-    public void setElementos(List<String> elementos) {
-        this.listaElementos = elementos;
-    }
+//    public List<String> getElementos() {
+//        return listaElementos;
+//    }
+//
+//    public void setElementos(List<String> elementos) {
+//        this.listaElementos = elementos;
+//    }
 
     public void mostrarElentosSimilares(String texto) {
         if (((JTextField) componenteLlamador).getText().length() == 0) {
@@ -47,14 +45,14 @@ public class DesplegableJPopUPMenu extends JPopupMenu {
             setVisible(false);
             return;
         }
-        cajaDeTextoEsVacía =false;
+        cajaDeTextoEsVacía = false;
         removeAll();
         setVisible(false);
         if (texto.length() == 0) {
             componenteLlamador.requestFocus();
         } else {
-            for(int i=0;i<((AutoCompletar)componenteLlamador).getModelo().getListaElementos().size();i++){
-                String elemento = ((AutoCompletar)componenteLlamador).getModelo().getElemento(i);
+            for (int i = 0; i < ((AutoCompletar) componenteLlamador).getModelo().getListaElementos().size(); i++) {
+                String elemento = ((AutoCompletar) componenteLlamador).getModelo().getElementoString(i);
                 boolean cumplePatron = Pattern.matches(texto.toUpperCase() + ".*", elemento.toUpperCase());
                 if (cumplePatron) {
                     JmenuItemDesplegable item = new JmenuItemDesplegable(elemento);
@@ -66,16 +64,15 @@ public class DesplegableJPopUPMenu extends JPopupMenu {
             componenteLlamador.requestFocus();
         }
     }
-    
-    public void ocultar(){
+
+    public void ocultar() {
         setVisible(false);
     }
 
     // clase interna privada para manejar eventos de elemento de menú
-    
     /**
-     * Esta clase item sirve para añadir items al menu desplegable y contrlar eventos 
-     * como por ejemplo cuando se cambia de un item a otro
+     * Esta clase item sirve para añadir items al menu desplegable y contrlar
+     * eventos como por ejemplo cuando se cambia de un item a otro
      */
     private class JmenuItemDesplegable extends JMenuItem {
 
@@ -101,8 +98,8 @@ public class DesplegableJPopUPMenu extends JPopupMenu {
                     }
                 }
             });
-            
-            
+
+
         }
 
         public int getIndexItem() {
@@ -112,6 +109,5 @@ public class DesplegableJPopUPMenu extends JPopupMenu {
         public void setIndexItem(int indexItem) {
             this.indexItem = indexItem;
         }
-        
     } // fin de la clase interna privada ManejadorEventos
 }
