@@ -5,9 +5,8 @@
 package autocompletar;
 
 import autocompletar.logica.AutoCompletar;
-import autocompletar.logica.ModeloAutoCompletar;
-import java.util.ArrayList;
-import java.util.List;
+import autocompletar.logica.DesplegableJPopUPMenu;
+import autocompletar.logica.ModeloAutoCompletarDefault;
 import javax.swing.JFrame;
 
 /**
@@ -16,27 +15,20 @@ import javax.swing.JFrame;
  */
 public class PantallaPrueba extends JFrame {
 
-    List possible = new ArrayList();
-
     /**
      * Creates new form PantallaPrueba
      */
     public PantallaPrueba() {
         initComponents();
         
-        possible.add("Nacionalidad Austria");
-        possible.add("Australia");
-        possible.add("Austriaca");
-        possible.add("Austriaco");
-        possible.add("Austriania");
-        possible.add("Nacionalidad Italy");
-        possible.add("Croatia");
-        possible.add("Hungary");
         
-        ModeloAutoCompletar modelo = new ModeloAutoCompletar();
-        modelo.setListaElementos(possible);
+        
+        ((AutoCompletar)txtCampo).setDesplegable(new DesplegableJPopUPMenu(txtCampo));
+        
+        ModeloAutoCompletarDefault modelo = new ModeloAutoCompletarDefault();
         
         ((AutoCompletar)txtCampo).setModelo(modelo);
+        autoCompletarTextField1.setModelo(modelo);
         
         //((AutoCompletar)txtCampo).setLista(possible);
        
@@ -44,7 +36,7 @@ public class PantallaPrueba extends JFrame {
     
     public void iniciar(){
         String listaPantalla = "";
-        for (Object object : possible) {
+        for (Object object : ((AutoCompletar)txtCampo).getModelo().getListaElementos()) {
             listaPantalla+="\n"+object;
         }
         jtextAreaLista.setText(listaPantalla);
@@ -67,10 +59,12 @@ public class PantallaPrueba extends JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtextAreaLista = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
+        autoCompletarTextField1 = new autocompletar.componente.AutoCompletarTextField();
 
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Prueba Autocompletar");
 
         jLabel1.setText("Filtro");
 
@@ -93,12 +87,13 @@ public class PantallaPrueba extends JFrame {
                     .addComponent(txtCampo)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(autoCompletarTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 188, Short.MAX_VALUE)))
+                        .addGap(0, 54, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -114,13 +109,16 @@ public class PantallaPrueba extends JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(autoCompletarTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private autocompletar.componente.AutoCompletarTextField autoCompletarTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
