@@ -18,14 +18,14 @@ public class ModeloAutoCompletarDefault implements ModeloAutoCompletar {
     public ModeloAutoCompletarDefault() {
         listaElementos = new ArrayList<>();
         
-        listaElementos.add("Nacionalidad Austria");
+        listaElementos.add("Andorra");
+        listaElementos.add("Argentina");
         listaElementos.add("Australia");
-        listaElementos.add("Austriaca");
-        listaElementos.add("Austriaco");
-        listaElementos.add("Austriania");
-        listaElementos.add("Nacionalidad Italy");
-        listaElementos.add("Croatia");
-        listaElementos.add("Hungary");
+        listaElementos.add("Rumania");
+        listaElementos.add("Noruega");
+        listaElementos.add("Italia");
+        listaElementos.add("Croacia");
+        listaElementos.add("Hungria");
     }
 
     @Override
