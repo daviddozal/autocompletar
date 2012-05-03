@@ -19,7 +19,7 @@ public class ModeloAutoCompletarDefault implements ModeloAutoCompletar {
         listaElementos = new ArrayList<>();
         
         listaElementos.add("Andorra");
-        listaElementos.add("Argentina");
+        listaElementos.add("Nacionalidad Argentina");
         listaElementos.add("Australia");
         listaElementos.add("Rumania");
         listaElementos.add("Noruega");

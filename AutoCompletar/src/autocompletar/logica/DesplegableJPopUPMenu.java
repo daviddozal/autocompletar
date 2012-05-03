@@ -53,8 +53,7 @@ public class DesplegableJPopUPMenu extends JPopupMenu {
         } else {
             for (int i = 0; i < ((AutoCompletar) componenteLlamador).getModelo().getListaElementos().size(); i++) {
                 String elemento = ((AutoCompletar) componenteLlamador).getModelo().getElementoString(i);
-                boolean cumplePatron = Pattern.matches(texto.toUpperCase() + ".*", elemento.toUpperCase());
-                if (cumplePatron) {
+                if (verificaPatron(texto, elemento)) {
                     JmenuItemDesplegable item = new JmenuItemDesplegable(elemento);
                     item.setIndexItem(i);
                     add(item);
@@ -63,6 +62,27 @@ public class DesplegableJPopUPMenu extends JPopupMenu {
             show(componenteLlamador, posX, posY);
             componenteLlamador.requestFocus();
         }
+    }
+    
+    /**
+     * verifica que el texto ingresado concuerde con el elemento seleccionado de
+     * la lista
+     *
+     * @param elemento
+     * @return
+     */
+    private boolean verificaPatron(String textoBuscado,String elemento) {
+
+        boolean cumplePatron = false;
+
+        for (String string : elemento.split(" ")) {
+            cumplePatron = Pattern.matches(textoBuscado.toUpperCase() + ".*", string.toUpperCase());
+            if (cumplePatron) {
+                break;
+            }
+        }
+
+        return cumplePatron;
     }
 
     public void ocultar() {

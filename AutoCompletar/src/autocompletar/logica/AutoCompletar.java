@@ -31,7 +31,7 @@ public class AutoCompletar extends JTextField {
                 if (e.getKeyCode() < 65 || e.getKeyCode() > 90) {//si no es un caracter
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                         desplegable.ocultar();
-                        
+
                         setSelectionStart(getText().length());
 
                     } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {//ver si si se esta borrando un caracter
@@ -40,11 +40,10 @@ public class AutoCompletar extends JTextField {
                     }
                 } else {
                     texto = texto + e.getKeyChar();
-                    
-                    for(int i=0;i<modelo.getListaElementos().size();i++){
+
+                    for (int i = 0; i < modelo.getListaElementos().size(); i++) {
                         String elemento = modelo.getElementoString(i);
-                        boolean cumplePatron = Pattern.matches(texto.toUpperCase() + ".*", elemento.toUpperCase());
-                        if (cumplePatron) {
+                        if (verificaPatron(elemento)) {
                             setText(texto + autoCompletar(texto.toLowerCase(), elemento.toLowerCase()));
                             desplegable.mostrarElentosSimilares(texto);
                             break;
@@ -54,6 +53,27 @@ public class AutoCompletar extends JTextField {
                 }
             }
         });
+    }
+
+    /**
+     * verifica que el texto ingresado concuerde con el elemento seleccionado de
+     * la lista
+     *
+     * @param elemento
+     * @return
+     */
+    private boolean verificaPatron(String elemento) {
+
+        boolean cumplePatron = false;
+
+        for (String string : elemento.split(" ")) {
+            cumplePatron = Pattern.matches(texto.toUpperCase() + ".*", string.toUpperCase());
+            if (cumplePatron) {
+                break;
+            }
+        }
+
+        return cumplePatron;
     }
 
     public DesplegableJPopUPMenu getDesplegable() {
@@ -93,13 +113,13 @@ public class AutoCompletar extends JTextField {
     public void setSelectedItem(Object SelectedItem) {
         this.SelectedItem = SelectedItem;
     }
-    
+
     public void setSelectedItem(int index) {
-        if(modelo.getListaElementos()!=null){
+        if (modelo.getListaElementos() != null) {
             SelectedItem = modelo.getListaElementos().get(index);
         }
     }
-    
+
     /**
      * devuelve la cadena ingresada en "cadena" sin el texto ingresado en
      * "quitarTexto"
@@ -109,7 +129,15 @@ public class AutoCompletar extends JTextField {
      * @return Si cadena="Hola" y quitarTexto="H" devuelve "ola"
      */
     private String autoCompletar(String quitarTexto, String cadena) {
-        return cadena.substring(quitarTexto.length());
+        String retorno = "";
+        if (cadena.split(" ").length > 1) {
+            if (cadena.split(" ")[0].toUpperCase().startsWith(quitarTexto.toUpperCase())) {
+                retorno = cadena.substring(quitarTexto.length());
+            }
+        } else {
+            retorno = cadena.substring(quitarTexto.length());
+        }
+        return retorno;
     }
 
     private String borrarUltimoCaracter(String cadena) {
