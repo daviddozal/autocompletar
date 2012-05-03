@@ -29,8 +29,8 @@ public class PantallaPrueba extends JFrame {
         
         ((AutoCompletar)txtCampo).setModelo(modelo);
         
-        //((AutoCompletar)txtCampo).setLista(possible);
-       
+        setLocationRelativeTo(null);
+      
     }
     
     public void iniciar(){
