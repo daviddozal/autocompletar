@@ -7,6 +7,7 @@ package autocompletar;
 import autocompletar.logica.AutoCompletar;
 import autocompletar.logica.DesplegableJPopUPMenu;
 import autocompletar.logica.ModeloAutoCompletarDefault;
+import java.awt.Color;
 import javax.swing.JFrame;
 
 /**
@@ -28,6 +29,7 @@ public class PantallaPrueba extends JFrame {
         ModeloAutoCompletarDefault modelo = new ModeloAutoCompletarDefault();
         
         ((AutoCompletar)txtCampo).setModelo(modelo);
+        ((AutoCompletar)txtCampo).getDesplegable().setForeground(new Color(102,153,255));
         
         setLocationRelativeTo(null);
       
