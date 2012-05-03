@@ -5,8 +5,6 @@
 package autocompletar.logica;
 
 import java.awt.Component;
-import java.util.List;
-import java.util.regex.Pattern;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
@@ -53,7 +51,7 @@ public class DesplegableJPopUPMenu extends JPopupMenu {
         } else {
             for (int i = 0; i < ((AutoCompletar) componenteLlamador).getModelo().getListaElementos().size(); i++) {
                 String elemento = ((AutoCompletar) componenteLlamador).getModelo().getElementoString(i);
-                if (verificaPatron(texto, elemento)) {
+                if (((AutoCompletar)componenteLlamador).verificaPatron(texto, elemento)) {
                     JmenuItemDesplegable item = new JmenuItemDesplegable(elemento);
                     item.setIndexItem(i);
                     add(item);
@@ -62,27 +60,6 @@ public class DesplegableJPopUPMenu extends JPopupMenu {
             show(componenteLlamador, posX, posY);
             componenteLlamador.requestFocus();
         }
-    }
-    
-    /**
-     * verifica que el texto ingresado concuerde con el elemento seleccionado de
-     * la lista
-     *
-     * @param elemento
-     * @return
-     */
-    private boolean verificaPatron(String textoBuscado,String elemento) {
-
-        boolean cumplePatron = false;
-
-        for (String string : elemento.split(" ")) {
-            cumplePatron = Pattern.matches(textoBuscado.toUpperCase() + ".*", string.toUpperCase());
-            if (cumplePatron) {
-                break;
-            }
-        }
-
-        return cumplePatron;
     }
 
     public void ocultar() {

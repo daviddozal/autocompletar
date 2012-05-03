@@ -7,6 +7,7 @@ package autocompletar.componente;
 import autocompletar.logica.AutoCompletar;
 import autocompletar.logica.DesplegableJPopUPMenu;
 import autocompletar.logica.ModeloAutoCompletar;
+import java.awt.Color;
 
 /**
  *
@@ -84,5 +85,9 @@ public class AutoCompletarTextField extends javax.swing.JPanel {
     
     public Object getItemSeleccionado(){
         return ((AutoCompletar)txtBuscar).getSelectedItem();
+    }
+    
+    public void setForegroundDesplegable(Color color){
+        ((AutoCompletar)txtBuscar).getDesplegable().setForeground(color);
     }
 }

@@ -6,7 +6,7 @@ package autocompletar.logica;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.regex.Pattern;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 
 /**
@@ -43,10 +43,12 @@ public class AutoCompletar extends JTextField {
 
                     for (int i = 0; i < modelo.getListaElementos().size(); i++) {
                         String elemento = modelo.getElementoString(i);
-                        if (verificaPatron(elemento)) {
+                        if (verificaPatron(texto,elemento)) {
                             setText(texto + autoCompletar(texto.toLowerCase(), elemento.toLowerCase()));
                             desplegable.mostrarElentosSimilares(texto);
                             break;
+                        }else{
+                            desplegable.ocultar();
                         }
                     }
                     setSelectionStart(texto.length());
@@ -62,12 +64,12 @@ public class AutoCompletar extends JTextField {
      * @param elemento
      * @return
      */
-    private boolean verificaPatron(String elemento) {
+    public boolean verificaPatron(String texto, String elemento) {
 
         boolean cumplePatron = false;
 
         for (String string : elemento.split(" ")) {
-            cumplePatron = Pattern.matches(texto.toUpperCase() + ".*", string.toUpperCase());
+            cumplePatron = string.toUpperCase().startsWith(texto.toUpperCase());
             if (cumplePatron) {
                 break;
             }
