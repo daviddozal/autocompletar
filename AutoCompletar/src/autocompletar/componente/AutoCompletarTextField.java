@@ -90,4 +90,8 @@ public class AutoCompletarTextField extends javax.swing.JPanel {
     public void setForegroundDesplegable(Color color){
         ((AutoCompletar)txtBuscar).getDesplegable().setForeground(color);
     }
+    
+    public void setTexto(String texto){
+        ((AutoCompletar)txtBuscar).setTexto(texto);
+    }
 }
