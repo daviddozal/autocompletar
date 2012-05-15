@@ -87,6 +87,11 @@ public class AutoCompletarTextField extends javax.swing.JPanel {
         return ((AutoCompletar)txtBuscar).getSelectedItem();
     }
     
+    public void setItemSeleccionado(String nombreItem){
+        ((AutoCompletar)txtBuscar).setSelectedItem(nombreItem);
+        
+    }
+    
     public void setForegroundDesplegable(Color color){
         ((AutoCompletar)txtBuscar).getDesplegable().setForeground(color);
     }
