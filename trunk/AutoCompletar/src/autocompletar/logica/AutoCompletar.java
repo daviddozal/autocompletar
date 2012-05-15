@@ -6,7 +6,6 @@ package autocompletar.logica;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 
 /**
@@ -43,11 +42,11 @@ public class AutoCompletar extends JTextField {
 
                     for (int i = 0; i < modelo.getListaElementos().size(); i++) {
                         String elemento = modelo.getElementoString(i);
-                        if (verificaPatron(texto,elemento)) {
+                        if (verificaPatron(texto, elemento)) {
                             setText(texto + autoCompletar(texto.toLowerCase(), elemento.toLowerCase()));
                             desplegable.mostrarElentosSimilares(texto);
                             break;
-                        }else{
+                        } else {
                             desplegable.ocultar();
                         }
                     }
@@ -112,8 +111,15 @@ public class AutoCompletar extends JTextField {
         return SelectedItem;
     }
 
-    public void setSelectedItem(Object SelectedItem) {
-        this.SelectedItem = SelectedItem;
+    public void setSelectedItem(String nombreItem) {
+        for (int i = 0; i < modelo.getListaElementos().size(); i++) {
+            if (modelo.getElementoString(i).equals(nombreItem)) {
+                this.SelectedItem = modelo.getListaElementos().get(i);
+                texto = modelo.getElementoString(i);
+                setText(texto);
+                break;
+            }
+        }
     }
 
     public void setSelectedItem(int index) {
