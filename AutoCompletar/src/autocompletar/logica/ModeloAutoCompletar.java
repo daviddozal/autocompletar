@@ -12,7 +12,11 @@ import java.util.List;
  */
 public interface ModeloAutoCompletar {
     
-    
+    /**
+     * Devuelve un string, representa al elemento seleccionado, con este valor compara con los demas elementos
+     * @param index
+     * @return 
+     */
     public abstract String getElementoString(int index);
 
     public abstract List getListaElementos();
