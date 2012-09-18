@@ -24,10 +24,9 @@ public class AutoCompletar extends JTextField {
          * evento de tecla para empezar el autocompletado
          */
         this.addKeyListener(new KeyAdapter() {
-
             @Override
             public void keyReleased(KeyEvent e) {
-                if (e.getKeyCode() < 65 || e.getKeyCode() > 90) {//si no es un caracter
+                if (!caracterValido(e.getKeyChar())) {//si no es un caracter
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                         desplegable.ocultar();
 
@@ -158,5 +157,20 @@ public class AutoCompletar extends JTextField {
         }
 
         return cadena;
+    }
+
+    /**
+     * verifica si el caracter es una letra o un número
+     */
+    private boolean caracterValido(char caracter) {
+        if (caracter >= 48 && caracter <= 57) {
+            return true;
+        } else if (caracter >= 65 && caracter <= 90) {
+            return true;
+        } else if (caracter >= 97 && caracter <= 122) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

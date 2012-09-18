@@ -28,13 +28,6 @@ public class DesplegableJPopUPMenu extends JPopupMenu {
         posY = (int) componenteLlamador.getPreferredSize().getHeight();
     }
 
-//    public List<String> getElementos() {
-//        return listaElementos;
-//    }
-//
-//    public void setElementos(List<String> elementos) {
-//        this.listaElementos = elementos;
-//    }
 
     public void mostrarElentosSimilares(String texto) {
         if (((JTextField) componenteLlamador).getText().length() == 0) {
