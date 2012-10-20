@@ -36,7 +36,7 @@ public class AutoCompletar extends JTextField {
                         texto = borrarUltimoCaracter(texto);
                         desplegable.mostrarElentosSimilares(texto);
                     }
-                } else {
+                } else { //Si es caracter
                     texto = texto + e.getKeyChar();
 
                     for (int i = 0; i < modelo.getListaElementos().size(); i++) {

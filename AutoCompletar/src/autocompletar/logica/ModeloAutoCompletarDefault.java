@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author diego
  */
-public class ModeloAutoCompletarDefault implements ModeloAutoCompletar {
+public class ModeloAutoCompletarDefault extends ModeloAutoCompletar {
 
     private List<String> listaElementos;
 
@@ -43,7 +43,6 @@ public class ModeloAutoCompletarDefault implements ModeloAutoCompletar {
         this.listaElementos= listaElementos;
     }
 
-    @Override
     public void añadirElemento(Object elemento) {
         listaElementos.add(elemento.toString());
     }
