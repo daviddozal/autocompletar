@@ -14,6 +14,13 @@ public class ModeloAutoCompletar {
 
     private List<ElementoAutoCompletar> elementos;
 
+    public ModeloAutoCompletar() {
+    }
+
+    public ModeloAutoCompletar(List<ElementoAutoCompletar> elementos) {
+        this.elementos = elementos;
+    }
+    
     public String getElementoString(int index) {
         return elementos.get(index).getNombreElemento();
     }
