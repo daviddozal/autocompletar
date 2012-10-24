@@ -38,7 +38,9 @@ public class AutoCompletar extends JTextField {
                     }
                 } else { //Si es caracter
                     texto = texto + e.getKeyChar();
-
+                    if (modelo.getListaElementos().isEmpty()) {
+                        return;
+                    }
                     for (int i = 0; i < modelo.getListaElementos().size(); i++) {
                         String elemento = modelo.getElementoString(i);
                         if (verificaPatron(texto, elemento)) {

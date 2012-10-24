@@ -100,6 +100,10 @@ public class AutoCompletarTextField extends javax.swing.JPanel {
     public void setTexto(String texto){
         ((AutoCompletar)txtBuscar).setTexto(texto);
     }
+    
+    public String getTexto(){
+        return txtBuscar.getText();
+    }
 
     @Override
     public void requestFocus() {
